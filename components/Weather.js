@@ -6,7 +6,9 @@ export default function Weather(props){
     const [forecastInfo, setForecastInfo] = useState({
         main: '-',
         description: '-',
-        temp: 0
+        temp: 0,
+        temp_max:0,
+        temp_min:0
     })
 
     useEffect(() => {
@@ -18,6 +20,7 @@ export default function Weather(props){
                     main: json.weather[0].main,
                     description: json.weather[0].description,
                     temp: json.main.temp });
+                    
                 })
             .catch((error) => {
                 console.warn(error); 
@@ -26,7 +29,7 @@ export default function Weather(props){
     }, [props.zipCode])
 
     return (
-        <ImageBackground source={require('../bg.jpg')} style={styles.backdrop}>
+        <ImageBackground source={require('../bg02.jpg')} style={styles.backdrop}>
             <Text style = {styles.Textchange}>Zip Code</Text>
             <Text style = {styles.Textchange}>{props.zipCode}</Text>
             <Forecast {...forecastInfo}/>
